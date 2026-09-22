@@ -338,7 +338,7 @@ def upload_file():
         ax.set_yscale("log")
         ax.set_xlabel("AB/2 (m)", fontsize=12)
         ax.set_ylabel(
-            "Apparent Resistivity ($\Omega$m)", fontsize=12
+            "Apparent Resistivity ($\\Omega$m)", fontsize=12
         )
         ax.set_title("VES Field Curve", fontsize=14)
         ax.grid(True, which="both", ls="--", alpha=0.7)
