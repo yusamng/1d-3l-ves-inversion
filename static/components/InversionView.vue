@@ -134,7 +134,7 @@ export default {
         const showPlot = ref(false);
 
         // Step 3 state properties
-        const plotTitle = ref('');
+        const plotTitle = ref('VES Plot');
         const inversionLoading = ref(false);
         const inversionPlotUrl = ref(null);
 
