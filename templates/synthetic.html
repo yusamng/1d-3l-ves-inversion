@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthetic Data - VES Suite</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue3-sfc-loader/dist/vue3-sfc-loader.js"></script>
+</head>
+<body class="bg-slate-50 font-sans antialiased">
+    <div id="app">
+        <dashboard-layout page="synthetic"></dashboard-layout>
+    </div>
+    <script>
+        const { createApp } = Vue;
+        const options = {
+            moduleCache: { vue: Vue },
+            async getFile(url) {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(res.statusText);
+                return await res.text();
+            },
+            addStyle(textContent) {
+                const style = Object.assign(document.createElement('style'), { textContent });
+                const ref = document.head.getElementsByTagName('style')[0] || null;
+                document.head.insertBefore(style, ref);
+            },
+        };
+        const app = createApp({});
+        app.component('dashboard-layout', Vue.defineAsyncComponent(() => 
+            window['vue3-sfc-loader'].loadModule("{{ url_for('static', filename='components/DashboardLayout.vue') }}", options)
+        ));
+        app.mount('#app');
+    </script>
+</body>
+</html>
